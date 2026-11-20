@@ -230,10 +230,36 @@
   body.blessing .bless-cta{display:none}
 
 
-  .topscrim{position:absolute;left:0;top:0;right:0;height:24%;z-index:3;pointer-events:none;
+  /* 顶部：很浅的一层，只为压住标题区的亮部 */
+  /* 左上：遮住平台水印，右、下两边羽化 */
+  .corner{position:absolute;left:0;top:0;width:15.5%;height:16%;z-index:3;pointer-events:none;
+    background:rgba(3,9,11,.996);
+    -webkit-mask-image:linear-gradient(to right,#000 74%,transparent 100%),
+                        linear-gradient(to bottom,#000 92%,transparent 100%);
+    -webkit-mask-composite:source-in;
+    mask-image:linear-gradient(to right,#000 68%,transparent 100%),
+               linear-gradient(to bottom,#000 64%,transparent 100%);
+    mask-composite:intersect}
+  .corner-r{position:absolute;right:0;top:0;width:15.5%;height:16%;z-index:3;pointer-events:none;
+    transform:scaleX(-1);
+    background:rgba(3,9,11,.996);
+    -webkit-mask-image:linear-gradient(to right,#000 74%,transparent 100%),
+                        linear-gradient(to bottom,#000 92%,transparent 100%);
+    -webkit-mask-composite:source-in;
+    mask-image:linear-gradient(to right,#000 74%,transparent 100%),
+               linear-gradient(to bottom,#000 92%,transparent 100%);
+    mask-composite:intersect}
+  .topscrim{position:absolute;left:0;top:0;right:0;height:13%;z-index:3;pointer-events:none;
     background:linear-gradient(to bottom,
-      rgba(3,9,11,.998) 0%, rgba(3,9,11,.996) 55%,
-      rgba(3,10,12,.86) 72%, rgba(3,10,12,.42) 88%, transparent 100%)}
+      rgba(3,9,11,.72) 0%, rgba(3,9,11,.42) 45%, rgba(3,10,12,.12) 75%, transparent 100%)}
+  .corner{position:absolute;left:0;top:0;width:15.5%;height:16%;z-index:3;pointer-events:none;
+    background:rgba(3,9,11,.996);
+    -webkit-mask-image:linear-gradient(to right,#000 74%,transparent 100%),
+                        linear-gradient(to bottom,#000 92%,transparent 100%);
+    -webkit-mask-composite:source-in;
+    mask-image:linear-gradient(to right,#000 68%,transparent 100%),
+               linear-gradient(to bottom,#000 64%,transparent 100%);
+    mask-composite:intersect}
 
   .shud .x{margin-left:10px;background:none;border:1px solid rgba(64,224,208,.28);
     color:rgba(233,226,207,.55);width:22px;height:22px;line-height:1;
@@ -248,7 +274,9 @@
 <body>
 <div class="vbox">
   <div class="topscrim"></div>
-<video class="bgvid" id="vIdle" autoplay muted loop playsinline preload="auto" poster="media/idle1440-poster.jpg">
+  <div class="corner"></div>
+  <div class="corner-r"></div>
+  <video class="bgvid" id="vIdle" autoplay muted loop playsinline preload="auto" poster="media/idle1440-poster.jpg">
   <source src="media/idle1440.webm" type="video/webm" />
   <source src="media/idle1440.mp4" type="video/mp4" />
 </video>
